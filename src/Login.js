@@ -26,7 +26,7 @@ function App() {
         check
         .then(statevalue => {
             console.log(statevalue);
-            navigate("./callroll");
+            navigate("/callroll");
             setLoginError("");
         })
         .catch(statevalue =>{

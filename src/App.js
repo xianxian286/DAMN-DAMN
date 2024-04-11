@@ -14,7 +14,7 @@ const App = () => {
           },
           {
             path: "/callroll",
-            element:<div> 点名</div>
+            element:<Callroll/>
           },
       ]);
     return ( <RouterProvider router={router} />)
