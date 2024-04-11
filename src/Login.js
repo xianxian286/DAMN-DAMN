@@ -20,7 +20,7 @@ function App() {
         if(state>0.5){
             resolve('success')
         }else{
-            reject('登陆失败，重新输入密码吧')
+            reject('damn!!!!登陆失败了，重新检查一下账号密码吧')
         }
         })
         check
