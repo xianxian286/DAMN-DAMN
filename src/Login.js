@@ -1,4 +1,5 @@
 import './App.css';
+import './images';
 import {Button, Input} from '@douyinfe/semi-ui';
 import {Title} from '@douyinfe/semi-ui/lib/es/skeleton/item';
 import Text from '@douyinfe/semi-ui/lib/es/typography/text';
@@ -39,6 +40,7 @@ function App() {
       }, [accountName, accountKey]);
       return (
           <>
+          <Image src="./images/image.png"/>
           <Title style={{ margin: '8px 0' }} >欢迎登录教师点名系统</Title>
           <Input autoFocus placeholder='请输入账号' size='large' value ={accountName} onChange={(newValue) => {console.log(newValue);setValue(newValue);}}></Input>
           <Input placeholder='请输入密码' size='large' value={accountKey} onChange={(changeValue)=>{setAccountKey(changeValue); console.log(accountKey);}}></Input>
