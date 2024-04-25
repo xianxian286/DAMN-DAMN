@@ -1,6 +1,6 @@
 import './App.css';
-import './images';
 import {Button, Input} from '@douyinfe/semi-ui';
+import { Image, ImagePreview } from '@douyinfe/semi-ui';
 import {Title} from '@douyinfe/semi-ui/lib/es/skeleton/item';
 import Text from '@douyinfe/semi-ui/lib/es/typography/text';
 import {useState, useEffect} from 'react';
@@ -40,7 +40,11 @@ function App() {
       }, [accountName, accountKey]);
       return (
           <>
-          <Image src="./images/image.png"/>
+          <Image 
+        width={200}
+        height={200}
+        src="//s.moonshotacademy.cn/public/8/b/4de522-1fb5e2-2f1652.600.png"
+      />
           <Title style={{ margin: '8px 0' }} >欢迎登录教师点名系统</Title>
           <Input autoFocus placeholder='请输入账号' size='large' value ={accountName} onChange={(newValue) => {console.log(newValue);setValue(newValue);}}></Input>
           <Input placeholder='请输入密码' size='large' value={accountKey} onChange={(changeValue)=>{setAccountKey(changeValue); console.log(accountKey);}}></Input>
