@@ -1,6 +1,13 @@
-import { Button } from "@douyinfe/semi-ui";
+import { Button, List, Descriptions, ButtonGroup } from "@douyinfe/semi-ui";
 import { React } from "react";
-import { style } from './callroll';
+
+const style = {
+    border: '1px solid var(--semi-color-border)',
+    backgroundColor: 'var(--semi-color-bg-2)',
+    borderRadius: '3px',
+    paddingLeft: '20px',
+    margin: '8px 2px',
+};
 
 export function Student({ students, selectedStudent, isNotGroup }) {
     return (
@@ -39,3 +46,5 @@ export function Student({ students, selectedStudent, isNotGroup }) {
             )} />
     );
 }
+
+
