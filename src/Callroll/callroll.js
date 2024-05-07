@@ -52,9 +52,9 @@ function Student({ students, selectedStudent, isNotGroup }){
 }
 
 const Callroll = () => {
-    let [chooseList, setChooseList] = useState();
+    // let [chooseList, setChooseList] = useState();
+    // let [selectedStudent, setSelect] = useState([]);
     const [visible, setVisible] = useState(false);
-    let [selectedStudent, setSelect] = useState([]);
     let [choosenOne, setChosenOne] = useState();
     let [groups, setGroups] = useState([]);
     let [groupSize , setGroupSize] = useState();
