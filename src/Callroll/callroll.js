@@ -1,4 +1,3 @@
-import './App.css';
 import { useEffect, useState, React } from 'react';
 import axios from 'axios';
 import { List, Descriptions, Rating, Button, ButtonGroup, Modal, Text, Spin, Tabs, TabPane, Space, InputNumber } from '@douyinfe/semi-ui';
