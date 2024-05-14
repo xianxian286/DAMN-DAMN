@@ -1,8 +1,9 @@
+import styles from './callroll.module.scss'
 import { React, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import axios from 'axios';
 import { Student } from './component';
-import { Button, InputNumber, Modal, Space, Spin, TabPane, Tabs } from '@douyinfe/semi-ui';
+import { Button, InputNumber, Modal, Space, Spin, TabPane, Tabs, Card } from '@douyinfe/semi-ui';
 
 export function GroupTab() {
     let [groups, setGroups] = useState([]);
@@ -60,13 +61,21 @@ export function GroupTab() {
          <Student students={students} selectedStudent={[]}></Student>
                 <InputNumber value ={groupSize} onChange={(groupSize) => {setGroupSize(groupSize)}}></InputNumber>
                 <Button onClick={group}>分组</Button>
-                <Space>
-                    {groups.map(group =>
-                        <Space vertical>
-                            {group.map(student => 
-                                <div>{student.name}</div>
-                            )}
-                        </Space>
+                <Space className={styles.groups}>
+                    {groups.map((group, index) => {
+                        return (
+                            <Space vertical className={styles.group}>
+                                <Card 
+                                    title={String.fromCharCode(97 + index) + "组"}
+                                    style={{ maxWidth: 360 }}
+                                >
+                                    {group.map(student => 
+                                    <div className={styles.student}>{student.name}</div>
+                                )}
+                                </Card>
+                                
+                            </Space>
+                        )}
                     )}
                 </Space>   
         </div>

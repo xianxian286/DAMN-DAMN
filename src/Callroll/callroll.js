@@ -2,7 +2,6 @@ import { Button, InputNumber, Modal, Space, Spin, TabPane, Tabs } from '@douyinf
 import axios from 'axios';
 import { React, useEffect, useState } from 'react';
 import useSWR from 'swr';
-import { Student } from './component';
 import { CallrollTab } from './callrollTab';
 import { GroupTab } from './group';
 
