@@ -44,15 +44,24 @@
     },
     {
       "name": "王子元",
-      "points": 2,
+      "points": 3,
       "id": "cd4d",
-      "selected": false
+      "selected": true
     },
     {
       "name": "吴廷潇",
       "points": 2,
       "id": "8518",
       "selected": false
+    }
+  ],
+  "courses":[
+    {
+      "name":"导论"
+
+    },
+    {
+      "name":"计算机网络"
     }
   ]
 }

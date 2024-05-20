@@ -2,6 +2,7 @@ import {createBrowserRouter, Route, RouterProvider} from 'react-router-dom';
 import Login from './Login/index'
 import Callroll from './Callroll/callroll'
 import Root from './root'
+import { CourseList } from './Course/courseList';
 
 const App = () => {
     const router = createBrowserRouter([
@@ -17,6 +18,10 @@ const App = () => {
             path: "/callroll",
             element:<Callroll/>
           },
+          {
+            path:"/courses",
+            element:<CourseList/>
+          }
           
       ]);
     return ( <RouterProvider router={router} />)

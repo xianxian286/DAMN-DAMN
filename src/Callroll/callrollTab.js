@@ -10,7 +10,7 @@ export function CallrollTab() {
     let [choosenOne, setChosenOne] = useState();
 
     const { data:students, mutate} = useSWR('http://localhost:4000/students', url =>
-        axios.get('http://localhost:4000/students').then(response => {
+        axios.get(url).then(response => {
             console.log(response);
             console.log(response.data);
             return response.data;
@@ -28,14 +28,12 @@ export function CallrollTab() {
     };
     const handleOk = () => {
         setVisible(false);
-        // setSelect([...selectedStudent, choosenOne])
         updateStudent({id:choosenOne.id, data:{points:choosenOne.points + 1, selected:true}}).then(() => {mutate()})
         setChosenOne()
         console.log('Ok button clicked');
     };
     const handleCancel = () => {
         setVisible(false);
-        // setSelect([...selectedStudent, choosenOne])
         updateStudent({id:choosenOne.id, data:{selected:true}}).then(() => {mutate()})
         setChosenOne()
         console.log('Cancel button clicked');
@@ -46,7 +44,6 @@ export function CallrollTab() {
 
     useEffect( () => {
         if(students && students.filter( student => student.selected ).length == students.length){
-            // setSelect([])
             Promise.all(students.map(student => updateStudent({id:student.id, data:{selected:false}}))).then(() => {mutate()})
         }
     }, [students])
@@ -62,7 +59,7 @@ export function CallrollTab() {
 
     return(
         <div>
-            <Student students={students} selectedStudent={ students.filter( student => student.selected )} isNotGroup={true}></Student>
+            <Student students={students} selectedStudent={ students?.filter( student => student.selected )} isNotGroup={true}></Student>
                     <Button onClick={CallrollAction}>随机点名</Button>
                     <Modal
                         title="幸运儿"
