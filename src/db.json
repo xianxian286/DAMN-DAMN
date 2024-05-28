@@ -8,9 +8,9 @@
     },
     {
       "name": "王子浩然",
-      "points": 2,
+      "points": 3,
       "id": "7f80",
-      "selected": false
+      "selected": true
     },
     {
       "name": "赵胤轩",
@@ -50,20 +50,49 @@
     },
     {
       "name": "吴廷潇",
-      "points": 2,
+      "points": 3,
       "id": "8518",
-      "selected": false
+      "selected": true
     }
   ],
-  "courses":[
+  "courses": [
     {
-      "id":"1",
-      "name":"导论"
-
+      "id": "1",
+      "name": "导论",
+      "course_time": "1141-5-14"
     },
     {
-      "id":"2",
-      "name":"计算机网络"
+      "id": "2",
+      "name": "计算机网络",
+      "course_time": "1141-5-14"
+    }
+  ],
+  "attendence": [
+    {
+      "date": "2025-6-7",
+      "detail": [
+        {
+          "name": "王子浩然",
+          "status": "迟到"
+        },
+        {
+          "name": "付子豪",
+          "status": "迟到"
+        }
+      ]
+    },
+    {
+      "date": "2025-6-8",
+      "detail": [
+        {
+          "name": "张恩淇",
+          "status": "迟到"
+        },
+        {
+          "name": "赵胤轩",
+          "status": "迟到"
+        }
+      ]
     }
   ]
 }

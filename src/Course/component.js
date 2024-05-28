@@ -1,6 +1,7 @@
-import { Button, List, Descriptions, ButtonGroup } from "@douyinfe/semi-ui";
+import { Button, List, Descriptions, ButtonGroup, Table } from "@douyinfe/semi-ui";
 import { React } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 
 const style = {
     border: '1px solid var(--semi-color-border)',
@@ -35,4 +36,24 @@ export function Courses({courses}){
                 </List.Item>
             )} />
     )
+}
+
+export function AttendanceList({attendence}) {
+
+    const columns = [
+        {
+            title: '时间',
+            dataIndex: 'date',
+            
+        },
+        {
+            title: '详情',
+            dataIndex: 'detail',
+            render: (text, record) => {
+                return record.detail.map(item => `${item.name} ${item.status}`).join(', ');
+            }
+        }
+    ];
+
+    return <Table columns={columns} dataSource={attendence} pagination={false} />;
 }
