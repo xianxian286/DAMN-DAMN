@@ -10,8 +10,26 @@ import { AttendanceList } from './component';
 export function CourseDetails() {
     let { id } = useParams();
     const [visible, setVisible] = useState(false);
+    const [attendenceModalvisible, setAttendenceModalVisible] = useState(false);
+    
+    const showDialog = () => {
+        setAttendenceModalVisible(true);
+    };
+    
     const change = () => {
         setVisible(!visible);
+    };
+
+    const handleOk = () => {
+        setVisible(false);
+        //....
+    };
+    const handleCancel = () => {
+        setVisible(false);
+        ///....
+    };
+    const handleAfterClose = () => {
+        console.log('After Close callback executed');
     };
 
     const { data:students, isLoading:isStudentLoading, mutate} = useSWR('http://localhost:4000/students', url =>
@@ -47,7 +65,19 @@ export function CourseDetails() {
             <Button>上课</Button>
             <Button onClick={change}>考勤</Button>
             <SideSheet title="考勤" visible={visible} onCancel={change} size={'large'}>
-                <Button>添加考勤</Button>
+                <Button onClick={showDialog}>添加考勤</Button>
+                <Modal
+                    title="添加考勤"
+                    visible={visible}
+                    onOk={handleOk}
+                    afterClose={handleAfterClose} //>=1.16.0
+                    onCancel={handleCancel}
+                    closeOnEsc={true}
+                >
+                    This is the content of a basic modal.
+                    <br />
+                    More content...
+                </Modal>
                 <AttendanceList attendence={attendence}/>
             </SideSheet>
             <Button>统计</Button>
