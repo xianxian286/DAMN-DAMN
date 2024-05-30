@@ -65,7 +65,7 @@ export function CourseDetails() {
         ///....
     };
     const handleAfterClose = () => {
-        console.log('After Close callback executed');
+        console.log('After Close callback executed', 111);
     };
 
     const { data:students, isLoading:isStudentLoading, mutate} = useSWR('http://localhost:4000/students', url =>
