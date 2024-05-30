@@ -1,5 +1,5 @@
-import { Button, List, Descriptions, ButtonGroup, Table } from "@douyinfe/semi-ui";
-import { React } from "react";
+import { Button, List, Descriptions, ButtonGroup, Table, RadioGroup, Radio } from "@douyinfe/semi-ui";
+import { React, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 
@@ -56,4 +56,25 @@ export function AttendanceList({attendence}) {
     ];
 
     return <Table columns={columns} dataSource={attendence} pagination={false} />;
+}
+
+export function AbsenceButtons({ studentName }){
+    const initialValue = localStorage.getItem(`attendance_${studentName}`) || '';
+    const [radioValue, setRadioValue] = useState();
+
+    const radioChange = (event) => {
+        const value = event.target.value;
+        setRadioValue(event.target.value);
+        localStorage.setItem(`attendance_${studentName}`, value);
+        console.log(event.target.value, 111)
+      };
+
+    return(
+        <RadioGroup value={radioValue} onChange={radioChange} type='button' defaultValue={'正常'} buttonSize='small' aria-label="单选组合示例" name="demo-radio-small">
+            <Radio value={'迟到'}>迟到</Radio>
+            <Radio value={'请假'}>请假</Radio>
+            <Radio value={'缺勤'}>缺勤</Radio>
+        </RadioGroup>
+    )
+
 }

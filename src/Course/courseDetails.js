@@ -1,11 +1,15 @@
 import { useParams } from 'react-router-dom';
-import { React, useEffect, useState } from 'react';
+import { React, useState } from 'react';
 import useSWR from 'swr';
 import axios from 'axios';
-import Item from '@douyinfe/semi-ui/lib/es/cascader/item';
-import { Button, InputNumber, Modal, Space, Spin, TabPane, Tabs, SideSheet } from '@douyinfe/semi-ui';
+import { Button, Modal, Spin, SideSheet, List, Input } from '@douyinfe/semi-ui';
 import { Student } from '../Callroll/component';
-import { AttendanceList } from './component';
+import { AbsenceButtons, AttendanceList } from './component';
+
+const style = {
+    marginLeft:'10px',
+    width:'80px'
+};
 
 export function CourseDetails() {
     let { id } = useParams();
@@ -21,11 +25,43 @@ export function CourseDetails() {
     };
 
     const handleOk = () => {
-        setVisible(false);
+        setAttendenceModalVisible(false);
+        submitAttendance();
         //....
+        // axios.post('http://localhost:4000/attendence', )
     };
+
+    const submitAttendance = async () => {
+        const postData = {
+            date: "2025-6-7",
+            detail: students.map(student => ({
+                name: student.name,
+                status: localStorage.getItem(`attendance_${student.name}`) || '',
+            })),
+        };
+    
+        try {
+            const response = await fetch('http://localhost:4000/attendence', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(postData),
+            });
+    
+            if (response.ok) {
+                alert('考勤数据已提交');
+            } else {
+                alert('提交失败');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('提交失败');
+        }
+    };
+
     const handleCancel = () => {
-        setVisible(false);
+        setAttendenceModalVisible(false);
         ///....
     };
     const handleAfterClose = () => {
@@ -49,7 +85,9 @@ export function CourseDetails() {
     
     const {data:attendence, isLoading:isAttendenceLoading, error:attendenceError} = useSWR('http://localhost:4000/attendence', url =>
         axios.get(url).then(response => {
+            console.log(response.data,111)
             return response.data;
+            
         }))
 
     if (isCourseLoading || isStudentLoading || isAttendenceLoading) {
@@ -68,15 +106,23 @@ export function CourseDetails() {
                 <Button onClick={showDialog}>添加考勤</Button>
                 <Modal
                     title="添加考勤"
-                    visible={visible}
+                    visible={attendenceModalvisible}
                     onOk={handleOk}
-                    afterClose={handleAfterClose} //>=1.16.0
+                    afterClose={handleAfterClose}
                     onCancel={handleCancel}
                     closeOnEsc={true}
                 >
-                    This is the content of a basic modal.
-                    <br />
-                    More content...
+                    <List
+                        bordered
+                        dataSource={students}
+                        renderItem={item => 
+                        <List.Item>
+                            {item.name}
+                            <AbsenceButtons studentName={item.name} ></AbsenceButtons>
+                            <Input placeholder='备注' style={style}></Input>
+                        </List.Item>
+                        }
+                    />
                 </Modal>
                 <AttendanceList attendence={attendence}/>
             </SideSheet>
