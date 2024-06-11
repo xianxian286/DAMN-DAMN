@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Courses } from './component';
 import { config } from 'localforage';
 import { Button, Modal, Input } from '@douyinfe/semi-ui';
+import http from '../http';
 
 export function CourseList() {
     const [visible, setVisible] = useState(false);
@@ -26,7 +27,9 @@ export function CourseList() {
 
     const handleOk = () => {
         setVisible(false);
-        
+        http.post('http://localhost:5050/courses', { name: courseName }).then(e => {
+            mutate();
+        })
         setCourseName('');
     };
 
@@ -43,7 +46,7 @@ export function CourseList() {
 
     return (
         <div>
-            <Courses courses={courses}></Courses>
+            <Courses courses={courses} mutate={mutate}></Courses>
             <Button onClick={showDialog}>添加课程</Button>
             <Modal
             title="请输入你创建的课程名称"

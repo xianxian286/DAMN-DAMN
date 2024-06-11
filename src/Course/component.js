@@ -2,6 +2,7 @@ import { Button, List, Descriptions, ButtonGroup, Table, RadioGroup, Radio } fro
 import { React, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { IconDelete } from '@douyinfe/semi-icons';
+import http from "../http";
 
 
 
@@ -13,8 +14,14 @@ const style = {
     margin: '8px 2px',
 };
 
-export function Courses({courses}){
+export function Courses({courses, mutate}){
     let navigate = useNavigate();
+
+    const handleOk = (courseId) => {
+            http.delete('http://localhost:5050/courses/' + courseId).then(e => {
+                mutate();
+            })
+    };
 
     return(
         <List
@@ -33,7 +40,7 @@ export function Courses({courses}){
                 <List.Item style={style}>
                     <div>
                         <Button onClick={() => navigate('/courses/' + item.id )} >{item.name}</Button>
-                        <Button icon={<IconDelete />} type="danger" style={{ marginRight: 14 }}>删除</Button>
+                        <Button icon={<IconDelete />} type="danger" onClick={()=>handleOk(item.id)} style={{ marginRight: 14 }}>删除</Button>
                     </div>
                 </List.Item>
             )} />
