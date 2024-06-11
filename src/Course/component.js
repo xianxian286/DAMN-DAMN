@@ -1,6 +1,8 @@
 import { Button, List, Descriptions, ButtonGroup, Table, RadioGroup, Radio } from "@douyinfe/semi-ui";
 import { React, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { IconDelete } from '@douyinfe/semi-icons';
+
 
 
 const style = {
@@ -13,7 +15,6 @@ const style = {
 
 export function Courses({courses}){
     let navigate = useNavigate();
-    console.log(courses)
 
     return(
         <List
@@ -32,6 +33,7 @@ export function Courses({courses}){
                 <List.Item style={style}>
                     <div>
                         <Button onClick={() => navigate('/courses/' + item.id )} >{item.name}</Button>
+                        <Button icon={<IconDelete />} type="danger" style={{ marginRight: 14 }}>删除</Button>
                     </div>
                 </List.Item>
             )} />

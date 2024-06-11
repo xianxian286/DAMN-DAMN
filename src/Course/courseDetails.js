@@ -14,10 +14,10 @@ const style = {
 export function CourseDetails() {
     let { id } = useParams();
     const [visible, setVisible] = useState(false);
-    const [attendenceModalvisible, setAttendenceModalVisible] = useState(false);
+    const [attendanceModalvisible, setAttendanceModalVisible] = useState(false);
     
     const showDialog = () => {
-        setAttendenceModalVisible(true);
+        setAttendanceModalVisible(true);
     };
     
     const change = () => {
@@ -25,10 +25,10 @@ export function CourseDetails() {
     };
 
     const handleOk = () => {
-        setAttendenceModalVisible(false);
+        setAttendanceModalVisible(false);
         submitAttendance();
         //....
-        // axios.post('http://localhost:4000/attendence', )
+        // axios.post('http://localhost:4000/attendance', )
     };
 
     const submitAttendance = async () => {
@@ -41,7 +41,7 @@ export function CourseDetails() {
         };
     
         try {
-            const response = await fetch('http://localhost:4000/attendence', {
+            const response = await fetch('http://localhost:4000/attendance', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -61,7 +61,7 @@ export function CourseDetails() {
     };
 
     const handleCancel = () => {
-        setAttendenceModalVisible(false);
+        setAttendanceModalVisible(false);
         ///....
     };
     const handleAfterClose = () => {
@@ -83,14 +83,14 @@ export function CourseDetails() {
             return response.data;
         }))
     
-    const {data:attendence, isLoading:isAttendenceLoading, error:attendenceError} = useSWR('http://localhost:4000/attendence', url =>
+    const {data:attendance, isLoading:isAttendanceLoading, error:attendanceError} = useSWR('http://localhost:4000/attendance', url =>
         axios.get(url).then(response => {
             console.log(response.data,111)
             return response.data;
             
         }))
 
-    if (isCourseLoading || isStudentLoading || isAttendenceLoading) {
+    if (isCourseLoading || isStudentLoading || isAttendanceLoading) {
         return <Spin />;
       }
 
@@ -106,7 +106,7 @@ export function CourseDetails() {
                 <Button onClick={showDialog}>添加考勤</Button>
                 <Modal
                     title="添加考勤"
-                    visible={attendenceModalvisible}
+                    visible={attendanceModalvisible}
                     onOk={handleOk}
                     afterClose={handleAfterClose}
                     onCancel={handleCancel}
@@ -124,7 +124,7 @@ export function CourseDetails() {
                         }
                     />
                 </Modal>
-                <AttendanceList attendence={attendence}/>
+                <AttendanceList attendance={attendance}/>
             </SideSheet>
             <Button>统计</Button>
 

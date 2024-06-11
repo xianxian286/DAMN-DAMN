@@ -2,9 +2,9 @@
   "students": [
     {
       "name": "张恩淇",
-      "points": 2,
+      "points": 3,
       "id": "1cc7",
-      "selected": false
+      "selected": true
     },
     {
       "name": "王子浩然",
@@ -16,13 +16,13 @@
       "name": "赵胤轩",
       "points": 2,
       "id": "4e3c",
-      "selected": false
+      "selected": true
     },
     {
       "name": "曾奕洲",
-      "points": 2,
+      "points": 3,
       "id": "5e80",
-      "selected": false
+      "selected": true
     },
     {
       "name": "付子豪",
@@ -93,7 +93,8 @@
           "name": "赵胤轩",
           "status": "迟到"
         }
-      ]
+      ],
+      "id": "3829"
     },
     {
       "id": "9a4f",
@@ -260,6 +261,48 @@
         {
           "name": "吴廷潇",
           "status": "请假"
+        }
+      ]
+    },
+    {
+      "id": "880c",
+      "date": "2025-6-7",
+      "detail": [
+        {
+          "name": "张恩淇",
+          "status": "迟到"
+        },
+        {
+          "name": "王子浩然",
+          "status": "迟到"
+        },
+        {
+          "name": "赵胤轩",
+          "status": "迟到"
+        },
+        {
+          "name": "曾奕洲",
+          "status": "迟到"
+        },
+        {
+          "name": "付子豪",
+          "status": "迟到"
+        },
+        {
+          "name": "段啸俣",
+          "status": "迟到"
+        },
+        {
+          "name": "高涵",
+          "status": "迟到"
+        },
+        {
+          "name": "王子元",
+          "status": "迟到"
+        },
+        {
+          "name": "吴廷潇",
+          "status": "迟到"
         }
       ]
     }
